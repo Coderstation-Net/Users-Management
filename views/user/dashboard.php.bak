@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - CODERSTATION</title>
+    <link rel="icon" type="image/png" href="/User-Management/assets/icons/favicon.png">
+    <link rel="stylesheet" href="/User-Management/assets/css/style.css?v=1.5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body data-logged-in="true">
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="container">
+                <div class="brand-name">
+                    <img src="/User-Management/assets/icons/favicon.png" alt="CODERSTATION" style="width: 30px; height: 30px; object-fit: contain;"> 
+                    <div class="brand-text" style="display: flex; flex-direction: column; line-height: 1.15;">
+                        <span>CODERSTATION</span>
+                        <span class="brand-subtitle">User Dashboard</span>
+                    </div>
+                </div>
+                <div class="header-nav">
+                    <div class="user-info" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-user"></i>
+                        <span>
+                            <?php echo htmlspecialchars($_SESSION['account_name']); ?>
+                        </span>
+                    </div>
+                    <a href="/User-Management/logout" class="d-none d-sm-inline">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <h1 class="mb-4">
+                    <i class="fas fa-tachometer-alt"></i> User Dashboard
+                </h1>
+
+                <!-- Role Specific Dashboard -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <?php echo $_SESSION['user_level']; ?> Workspace
+                        </h2>
+                    </div>
+                    <!-- Data Encoder Dashboard -->
+                    <?php if ($_SESSION['user_level'] === 'Data-Encoder'): ?>
+                        <div class="stats-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                            <div class="stat-card p-3 rounded bg-light text-center border">
+                                <div class="stat-value h2 text-primary">1,284</div>
+                                <div class="stat-label text-muted">Records Encoded</div>
+                            </div>
+                            <div class="stat-card p-3 rounded bg-light text-center border">
+                                <div class="stat-value h2 text-warning">45</div>
+                                <div class="stat-label text-muted">Pending Approval</div>
+                            </div>
+                            <div class="stat-card p-3 rounded bg-light text-center border">
+                                <div class="stat-value h2 text-success">98%</div>
+                                <div class="stat-label text-muted">Accuracy Rate</div>
+                            </div>
+                            <div class="stat-card p-3 rounded bg-light text-center border">
+                                <div class="stat-value h2 text-info">12</div>
+                                <div class="stat-label text-muted">Daily Target</div>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <!-- Standard User Dashboard -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value text-success">Active</div>
+                                <div class="stat-label">Account Status</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value text-primary"><?php echo date('M d, Y'); ?></div>
+                                <div class="stat-label">Member Since</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value text-info">Secure</div>
+                                <div class="stat-label">Profile Strength</div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+
+
+                <!-- Tabs -->
+                <div class="card">
+                    <div class="nav-tabs">
+                        <button class="nav-tab active" data-tab="profile">My Profile</button>
+                        <button class="nav-tab" data-tab="activityLogs">Activity Logs</button>
+                    </div>
+
+                    <!-- Profile Tab -->
+                    <div class="tab-content active" id="profile">
+                        <h3 class="mb-3">
+                            <i class="fas fa-user-edit"></i> Edit Profile
+                        </h3>
+
+                        <form id="profileForm">
+                            <div class="form-row">
+                                <div class="form-group-floating">
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder=" ">
+                                    <label for="username">Username</label>
+                                </div>
+                                <div class="form-group-floating">
+                                    <input type="text" class="form-control" id="account_name" name="account_name"
+                                        placeholder=" ">
+                                    <label for="account_name">Account Name</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group-floating">
+                                    <input type="email" class="form-control" id="email" readonly placeholder=" ">
+                                    <label for="email">Email Address</label>
+                                    <small class="text-muted" style="position: absolute; bottom: -20px; left: 0;">Email
+                                        cannot be changed</small>
+                                </div>
+                                <div class="form-group-floating">
+                                    <input type="text" class="form-control" id="user_level" readonly placeholder=" " style="background-color: #f3f4f6; cursor: not-allowed;">
+                                    <label for="user_level">User Level</label>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 25px;"></div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label text-muted small"
+                                    style="display: block; margin-bottom: 5px;">Gmail Account</label>
+                                <div style="display: flex; gap: 10px; align-items: center;">
+                                    <div style="position: relative; flex: 1;">
+                                        <input type="text" class="form-control" id="gmail_id" readonly
+                                            placeholder="Not Connected"
+                                            style="padding-left: 35px; background-color: #f3f4f6;">
+                                        <i class="fab fa-google"
+                                            style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #DB4437;"></i>
+                                    </div>
+                                    <div id="gmail_bind_actions"></div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h4 class="mb-3">
+                                <i class="fas fa-key"></i> Change Password
+                            </h4>
+
+                            <div class="form-row">
+                                <div class="form-group-floating">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder=" ">
+                                    <label for="password">New Password</label>
+                                    <small class="text-muted" style="position: absolute; bottom: -20px; left: 0;">Leave
+                                        blank to keep current</small>
+                                </div>
+                                <div class="form-group-floating">
+                                    <input type="password" class="form-control" id="confirm_password"
+                                        name="confirm_password" placeholder=" ">
+                                    <label for="confirm_password">Confirm Password</label>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 25px;"></div>
+
+                            <hr>
+                            <h4 class="mb-3">
+                                <i class="fas fa-shield-alt"></i> Security Settings
+                            </h4>
+
+                            <div class="form-group mb-3">
+                                <div class="form-check" style="display: flex; align-items: center; gap: 10px;">
+                                    <input type="checkbox" class="form-check-input" id="enable2fa_profile"
+                                        style="width: 20px; height: 20px;">
+                                    <label class="form-label" for="enable2fa_profile"
+                                        style="margin: 0; cursor: pointer;">Enable Google Authenticator (2FA)</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 20px;">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Activity Logs Tab -->
+                    <div class="tab-content" id="activityLogs">
+                        <h3 class="mb-3">
+                            <i class="fas fa-history"></i> My Activity Logs
+                        </h3>
+
+                        <div class="mb-3">
+                            <div class="form-row">
+                                <div class="form-group-floating">
+                                    <input type="date" class="form-control" id="log_start_date" placeholder=" ">
+                                    <label for="log_start_date">Start Date</label>
+                                </div>
+                                <div class="form-group-floating">
+                                    <input type="date" class="form-control" id="log_end_date" placeholder=" ">
+                                    <label for="log_end_date">End Date</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" id="filterUserLogsBtn">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table footable" id="userLogsTable" data-paging="true" data-filtering="true"
+                                data-sorting="true" data-paging-size="5">
+                                <thead>
+                                    <tr>
+                                        <th data-name="date">Date/Time</th>
+                                        <th data-name="action">Action</th>
+                                        <th data-name="description" data-breakpoints="xs">Description</th>
+                                        <th data-name="ip" data-breakpoints="xs sm">IP Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer" style="margin-top: auto;">
+            <p>Copyright 2026 CODERSTATION. All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <!-- 2FA Setup Modal -->
+    <div class="modal" id="setup2FAModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 class="modal-title" style="margin: 0;">Setup Google Authenticator</h3>
+                <button class="modal-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center mb-3">Scan this QR code with your Google Authenticator app:</p>
+                <div class="qr-code-container text-center mb-3" id="qrCodeContainer">
+                    <!-- QR Code will be generated here -->
+                </div>
+                <div class="form-group-floating">
+                    <input type="text" class="form-control" id="secretKey" readonly placeholder=" ">
+                    <label for="secretKey">Secret Key (Manual Entry)</label>
+                    <button type="button" class="btn btn-sm btn-secondary mt-1"
+                        style="position: absolute; right: 10px; top: 10px; z-index: 5;"
+                        onclick="Utils.copyToClipboard($('#secretKey').val())">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="form-group-floating">
+                    <input type="text" class="form-control" id="verifyCode" maxlength="6" placeholder=" ">
+                    <label for="verifyCode">Enter 6-digit code</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" id="enable2FABtn">Enable 2FA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2FA Disable Modal -->
+    <div class="modal" id="disable2FAModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 class="modal-title" style="margin: 0;">Disable 2FA</h3>
+                <button class="modal-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your password to disable 2FA:</p>
+                <div class="form-group-floating">
+                    <input type="password" class="form-control" id="disable2FAPassword" placeholder=" ">
+                    <label for="disable2FAPassword">Password</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" id="confirm-disable2FABtn">Disable 2FA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Unlink Gmail Modal -->
+    <div class="modal" id="userUnlinkGmailModal">
+        <div class="modal-dialog" style="max-width: 400px;">
+            <div class="modal-header">
+                <h3 class="modal-title" style="margin: 0;"><i class="fab fa-google text-danger"></i> Unlink Google Account</h3>
+                <button class="modal-close" id="closeUserUnlinkGmail">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to <strong>unlink your Google account</strong>? You will no longer be able to sign in using Google OAuth.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelUserUnlinkGmail">Cancel</button>
+                <button class="btn btn-danger" id="confirmUserUnlinkGmail"><i class="fas fa-unlink"></i> Yes, Unlink</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/User-Management/assets/js/kjua.min.js"></script>
+    <script src="/User-Management/assets/js/footable.min.js"></script>
+    <script src="/User-Management/assets/js/main.js?v=1.4"></script>
+    <script src="/User-Management/assets/js/user.js?v=1.4"></script>
+</body>
+
+</html>

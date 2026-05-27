@@ -1,0 +1,401 @@
+/* Authentication Pages */
+.auth-body {
+    min-height: 100vh;
+    background: var(--white);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Premium background grid overlay */
+.auth-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgb(204, 207, 215) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.auth-container {
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* Glassmorphism Auth Card */
+.auth-card-modern {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    padding: 2.25rem 2.5rem;
+    width: 100%;
+    max-width: 440px;
+    z-index: 10;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card-modern:hover {
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-brand img {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+}
+
+.auth-brand .brand-text {
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--primary) 20%, var(--secondary) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.auth-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 1.75rem;
+    font-weight: 500;
+}
+
+/* Compact form floating inputs inside auth card */
+.auth-card-modern .form-group-floating {
+    margin-bottom: 1rem;
+}
+
+.auth-card-modern .form-group-floating .form-control {
+    height: 3.2rem;
+    padding: 1.25rem 1rem 0.35rem;
+    background-color: var(--white);
+}
+
+.auth-card-modern .form-group-floating label {
+    padding: 0.85rem 1rem;
+}
+
+.auth-card-modern .form-group-floating .form-control:focus~label,
+.auth-card-modern .form-group-floating .form-control:not(:placeholder-shown)~label {
+    transform: scale(0.8) translateY(-0.6rem) translateX(0.15rem);
+}
+
+/* Clean Divider */
+.auth-divider-modern {
+    position: relative;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.auth-divider-modern::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(148, 163, 184, 0.3) 20%, rgba(148, 163, 184, 0.3) 80%, transparent);
+}
+
+.auth-divider-modern span {
+    position: relative;
+    background-color: var(--white);
+    padding: 0.35rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: var(--shadow-sm);
+}
+
+.auth-card-footer {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    padding-top: 1.5rem;
+}
+
+/* 2FA QR Code container for login */
+#qrCodeContainer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Custom styles for the elegant welcome/landing login page */
+.auth-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.auth-header-container {
+    max-width: 100%;
+    padding: 0 1.5rem;
+}
+
+.brand-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.auth-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.nav-btn-link {
+    font-weight: 700;
+}
+
+.auth-landing-container {
+    min-height: auto;
+    flex: 1;
+    padding: 1.5rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.welcome-card {
+    max-width: 640px;
+    padding: 2.75rem 2.5rem;
+    background: var(--white);
+    border-radius: 28px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    animation: fadeUp 0.6s ease;
+    z-index: 10;
+}
+
+.welcome-logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.15) 100%);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.05);
+}
+
+.welcome-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.welcome-title {
+    font-size: 2.35rem;
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.welcome-desc {
+    font-size: 1rem;
+    color: #334155;
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.feature-card {
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+    background: var(--white);
+    border-color: var(--primary-light);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+.feature-icon-shield {
+    color: var(--secondary);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.feature-icon-desktop {
+    color: #38bdf8;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.feature-icon-google {
+    color: #f87171;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.feature-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #0f172a;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.feature-detail {
+    font-size: 0.75rem;
+    color: #475569;
+    line-height: 1.3;
+    display: block;
+}
+
+.welcome-btn {
+    padding: 0.7rem 2.25rem;
+    font-size: 1.05rem;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+    transition: all 0.3s ease;
+}
+
+.auth-footer {
+    margin-top: auto;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.auth-modal-dialog {
+    max-width: 440px;
+    margin: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.auth-modal-card {
+    position: relative;
+    padding: 2.25rem 2.5rem;
+    margin: 0;
+}
+
+.auth-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text);
+    z-index: 100;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.auth-modal-close:hover {
+    background: var(--bg);
+    color: var(--primary);
+    transform: rotate(90deg);
+}
+
+.auth-modal-subtitle {
+    margin-top: 0.5rem;
+}
+
+.auth-2fa-hint {
+    position: absolute;
+    bottom: -22px;
+    left: 0;
+}
+
+.auth-2fa-spacer {
+    margin-bottom: 25px;
+}
+
+.google-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.auth-switch-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-switch-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+
+@media (max-width: 600px) {
+    .welcome-card {
+        padding: 2rem 1.5rem !important;
+    }
+
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

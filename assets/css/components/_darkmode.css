@@ -1,0 +1,79 @@
+/* Foundation for Dark Mode
+   Can be activated by adding .dark-mode class to the body or via media query.
+*/
+
+.dark-mode {
+    --bg: #0f172a;
+    --bg-color: var(--bg);
+    --card-bg: #1e293b;
+    
+    --text: #f8fafc;
+    --text-color: var(--text);
+    --text-muted: #94a3b8;
+    --white: #ffffff;
+    
+    --border: #334155;
+    --border-color: var(--border);
+    
+    --input-bg: #0f172a;
+    --input-border: #475569;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    --modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .table thead th {
+    background-color: #1e293b;
+}
+
+.dark-mode .table tbody tr:hover td {
+    background-color: #334155;
+}
+
+.dark-mode .modal-dialog {
+    background: var(--card-bg);
+}
+
+.dark-mode .modal-footer {
+    background: #0f172a;
+}
+
+.dark-mode .auth-card-modern {
+    background: rgba(30, 41, 59, 0.95);
+}
+
+.dark-mode .auth-divider-modern span {
+    background-color: var(--card-bg);
+    border-color: var(--border);
+}
+
+.dark-mode .footable-details.flat {
+    background: #0f172a;
+}
+
+.dark-mode .footable-pagination li a,
+.dark-mode .pagination li a {
+    background: var(--card-bg);
+}
+
+.dark-mode .footable-pagination li a:hover:not(.active),
+.dark-mode .pagination li a:hover:not(.active) {
+    background-color: #334155;
+}
+
+.dark-mode .btn-secondary {
+    background: #334155;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+.dark-mode .btn-secondary:hover {
+    background: #475569;
+}
+
+.dark-mode .stat-card {
+    background: var(--card-bg);
+}
