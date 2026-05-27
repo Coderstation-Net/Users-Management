@@ -5,16 +5,18 @@ A comprehensive user management system built with PHP MVC architecture, featurin
 ## Features
 
 ### Authentication & Authorization
-- **Multiple Login Options:**
+- **Registration:**
+  - Strictly through Google Single Sign-On (SSO)
+- **Login Options:**
   - Username and Password
   - Single Sign-On (SSO) with Google
-  - Single Sign-On (SSO) with Facebook
   - Two-Factor Authentication (2FA) with Google Authenticator
 
 ### User Management
-- User registration with email binding (Gmail required)
-- Optional Facebook account binding
-- Optional 2FA setup during registration
+- Registration strictly via Google SSO (traditional self-registration blocked)
+- New accounts default to Inactive status pending Administrator approval
+- Optional Facebook account binding (if configured)
+- Optional 2FA setup inside the dashboard
 - User profile management
 - User levels: Admin, User, Data-Encoder
 - User statuses: Active, Inactive, Suspended, Deleted
@@ -43,10 +45,11 @@ A comprehensive user management system built with PHP MVC architecture, featurin
 - Filter logs by date
 
 ### Additional Features
+- 100% Local Dependencies (No external CDNs required for functionality)
 - Multi-device login detection and logout
 - Real-time session monitoring
-- Toast notifications for all actions
-- Responsive design with Bootstrap 5
+- Comprehensive Toast notifications for all UI actions
+- Refactored premium light-mode UI design with modern CSS architecture
 - Activity logging for audit trails
 - Print functionality for reports
 
@@ -185,11 +188,10 @@ User-Management/
 ### For Users
 
 1. **Registration:**
-   - Navigate to the registration page
-   - Fill in required fields (Username, Account Name, Email)
-   - Optionally bind Facebook account
-   - Optionally enable 2FA during registration
-   - Submit the form
+   - Navigate to the login/registration page
+   - Click "Register with Google"
+   - Complete Google authentication
+   - Wait for Administrator approval (Account will be Inactive initially)
 
 2. **Login:**
    - Use username and password
