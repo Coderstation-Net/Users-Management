@@ -21,7 +21,7 @@ define('JWT_SECRET', 'your_super_secret_key_change_this_in_production');
 define('JWT_EXPIRATION', 900); // 15 minutes
 
 // Security Configuration
-define('PASSWORD_MIN_LENGTH', 8);
+define('PASSWORD_MIN_LENGTH', 10);
 define('MAX_LOGIN_ATTEMPTS', 3);
 define('LOGIN_BLOCK_DURATION', 86400); // 24 hours
 
