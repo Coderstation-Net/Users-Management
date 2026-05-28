@@ -7,9 +7,9 @@ define('DB_USER', 'root');
 define('DB_PASS', 'Admin1234');
 
 // Google OAuth Configuration
-define('GOOGLE_CLIENT_ID', '795592986442-m2dommrnq0g6ribh9e1vce5r0dhe863m.apps.googleusercontent.com');
-define('GOOGLE_CLIENT_SECRET', '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');
-define('GOOGLE_REDIRECT_URI', 'http://localhost/User-Management/oauth/google_callback.php');
+define('GOOGLE_CLIENT_ID', '');
+define('GOOGLE_CLIENT_SECRET', '');
+define('GOOGLE_REDIRECT_URI', '../google_callback.php');
 
 // Application Configuration
 define('APP_NAME', 'CODERSTATION');
